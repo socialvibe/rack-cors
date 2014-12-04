@@ -309,7 +309,7 @@ module Rack
           end
 
           def origin_for_response_header(origin)
-            return '*' if public_resource? && !credentials
+            return '*' if (public_resource? && !credentials) || origin == 'null' # Null origin handling to make MRAID work
             origin
           end
 
